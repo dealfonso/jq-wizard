@@ -1,6 +1,6 @@
-# Bootstrap Wizard
+# jQuery Wizard (jq-wizard)
 
-This is a component to create seld-managed wizards, using bootstrap and jQuery.
+This is a component to create seld-managed wizards, using jQuery.
 
 It is easy to use in your projects, as you just need to define each of your steps inside a div with a class, add the "next" and "previous" buttons, and call the `wizard()` function:
 ```html
@@ -28,25 +28,23 @@ $(function() {
 
 ## Examples
 
-You have several examples in this folder:
+You have several examples in this folder (some of them use bootstrap):
 - *simple.html* that contains a div-based example ([See it in action at codepen](https://codepen.io/dealfonso/pen/PoNgjKW)).
 - *modal.html* that contains a simple wizard inside a bootstrap modal ([See it in action at codepen](https://codepen.io/dealfonso/pen/XWdQgzO)).
 - *modalform.html* that contains a full wizard example with tab validation and other features, inside a form that can be submitted to your server ([See it in action at codepen](https://codepen.io/dealfonso/pen/eYZoRVQ)).
 
 ## Using
 
-You need to include `bs-wizard.js` either from your cloned repo, or from a CDN, after jQuery and Bootstrap. e.g.:
+You need to include `jq-wizard.js` either from your cloned repo, or from a CDN, after jQuery. e.g.:
 
 ```html
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>        
-    <script src="https://cdn.jsdelivr.net/gh/dealfonso/bs-wizard@1.0beta/bs-wizard.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/dealfonso/jq-wizard@1.0beta/jq-wizard.js"></script>
 ```
 
 ## Customization
 
-bs-wizard is highly customizable. You just need to pass an object to the "wizard" function, that overrides the default values:
+jq-wizard is highly customizable. You just need to pass an object to the "wizard" function, that overrides the default values:
 
 ```javascript
     $('#mywizard').wizard({

@@ -1,6 +1,6 @@
 /**
- * bs-wizard - Self managed Bootstrap Wizard
- * https://github.com/dealfonso/bs-wizard
+ * jq-wizard - Self managed Bootstrap Wizard
+ * https://github.com/dealfonso/jq-wizard
  *
  * Copyright (C) GRyCAP - I3M - UPV 
  * Developed by Carlos A. caralla@upv.es
