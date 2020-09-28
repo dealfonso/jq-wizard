@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Simple example for bs-wizard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>        
+    <script src="bs-wizard.js"></script>
+    <style>
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
+    .step.active {
+        opacity: 1;
+    }        
+    </style>
+</head>
+  <body class="text-center">
+    <div id='mywizard'>
+        <div class='wizard-tab' stepname='step1'>
+            <h1>This is the first step</h1>
+        </div>
+        <div class='wizard-tab' stepname='step2'>
+            <h1>This is the second step</h1>
+        </div>
+        <div class='wizard-tab' stepname='step3'>
+            <h1>This is the last step</h1>
+        </div>
+        <div>
+            <div class='step'></div>
+            <div class='step'></div>
+            <div class='step'></div>
+        </div>
+        <div>
+            <button class='btn btn-primary btn-prev'>Prev</button>
+            <button class='btn btn-primary btn-next'>Next</button>
+            <button class='btn btn-primary btn-end'>Finalize</button>
+        </div>
+    </div>      
+  </body>
+  <script>
+      $(function() {
+        $('#mywizard').wizard();
+      })
+  </script>
+</html>
