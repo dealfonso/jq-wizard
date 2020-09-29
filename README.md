@@ -96,5 +96,11 @@ The wizard also triggers two events, and you can subscribe to them:
    - *jq-wizard.update*: Called whenever the interface is updated (i.e. when the step is shown). It is also triggered when the wizard is created.
      - Handler: `update(obj, stepname, steppos)`
 
-In case that you want to receive the 
+In case that you want to receive the events during the creation, you must subscribe to the events before creating the wizard. E.g.:
+
+```javascript
+     $('#mywizard').on('jq-wizard.update', function(obj, stepname, steppos) {
+          console.log("interface just updated in step: ", stepname);
+     }).wizard();
+```
    
