@@ -93,6 +93,7 @@ class Wizard {
 
         // Initialize the wizard
         this._current = -1;
+        this._currentname = undefined;
         if (this.stepcount() > 0) {
             this.begin();
             this._attachEvents();
@@ -100,7 +101,6 @@ class Wizard {
             console.warn('no steps detected for the wizard')
             this._updateInterface();
         }
-
     }
 
     current() {
@@ -108,8 +108,7 @@ class Wizard {
     }
 
     currentstepname() {
-        let $currenttab = this._getTab$();
-        return $currenttab.attr(this._stepnameattr);
+        return this._currentname;
     }
 
     stepcount() {
@@ -119,11 +118,9 @@ class Wizard {
     next(skipvalidation = false) {
         // If possible to next
         if (this._current < this.stepcount() - 1) {
-            let $currenttab = this._getTab$();
-            let stepname = $currenttab.attr(this._stepnameattr);
             let gonext = true;
             if (! skipvalidation)
-                gonext = this._onnext(stepname, this._current);
+                gonext = this._onnext(this._currentname, this._current);
             if (gonext)
                 this._showStep(this._current + 1);
         }
@@ -132,11 +129,9 @@ class Wizard {
     prev(skipvalidation = false) {
         // If possible to next
         if (this._current > 0) {
-            let $currenttab = this._getTab$();
-            let stepname = $currenttab.attr(this._stepnameattr);
             let goprev = true;
             if (! skipvalidation)
-                goprev = this._onprev(stepname, this._current);
+                goprev = this._onprev(this._currentname, this._current);
             if (goprev)
                 this._showStep(this._current - 1);
         }
@@ -144,11 +139,9 @@ class Wizard {
 
     end(skipvalidation = false) {
         if (this._current == this.stepcount() - 1) {
-            let $currenttab = this._getTab$();
-            let stepname = $currenttab.attr(this._stepnameattr);
             let goend = true;
             if (! skipvalidation)
-                goend = this._onend(stepname, this._current);
+                goend = this._onend(this._currentname, this._current);
             return goend;
         }
         return false;
@@ -159,6 +152,7 @@ class Wizard {
     }
 
     begin() {
+        $(this._element).trigger('jq-wizard.begin');
         this._onbegin();
         this._showStep(0);
     }
@@ -237,6 +231,8 @@ class Wizard {
                 this._hidefnc($btn_end);
             else
                 this._showfnc($btn_end);
+
+        $(this._element).trigger('jq-wizard.update', [ this._currentname, this._current ]);
     }
 
     _showStep(n) {
@@ -260,8 +256,9 @@ class Wizard {
 
             // End
             this._current = n;
+            this._currentname = $currentstep.attr(this._stepnameattr);
             this._updateInterface();
-            this._onstep($currentstep.attr(this._stepnameattr), this._current);
+            this._onstep(this._currentname, this._current);
             return true;
         } else
             return false;

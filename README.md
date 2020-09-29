@@ -85,3 +85,16 @@ The meaning of the values and default values are the next:
         - Default: `true`
    - *autofocus*: If true, automatically sets the focus on the first input INSIDE the tab, when shown.
         - Default: `true`
+
+## Events
+
+The wizard also triggers two events, and you can subscribe to them:
+
+   - *jq-wizard.begin*: Called whenever the "begin" function is called (it is also triggered when the wizard is created). 
+     - Handler: `begin(obj, stepname, steppos)`
+
+   - *jq-wizard.update*: Called whenever the interface is updated (i.e. when the step is shown). It is also triggered when the wizard is created.
+     - Handler: `update(obj, stepname, steppos)`
+
+In case that you want to receive the 
+   
