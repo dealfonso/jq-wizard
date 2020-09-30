@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Modal example for jq-wizard with conditional path</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>        
+    <script src="jq-wizard.js"></script>
+    <style>
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.2;
+    }
+    .step.active {
+        opacity: 1;
+    }        
+    .step.main {
+        background-color: #bbbbbb;
+    }
+    .step.path1 {
+        background-color: #cbae82;
+    }
+    .step.path2 {
+        background-color: #97b498;
+    }
+    </style>
+</head>
+  <body>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mywizardmodal">Start wizard</button>
+    <div class="modal" id="mywizardmodal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+                <div class="container">
+                    <h1 class="modal-title d-block w-100 text-center">Wizard in a modal</h1>
+                    <div class="w-100 text-center">
+                        <div class='step main'></div>
+                        <div class='step path1'></div>
+                        <div class='step path1'></div>
+                        <div class='step path2'></div>
+                        <div class='step path2'></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">          
+                <div class='wizard-tab' active="true" stepname='step1'>
+                    <h2>This is the first step</h2>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="path1" name="customRadio" checked="true" class="custom-control-input">
+                        <label class="custom-control-label" for="path1">Path 1</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="path2" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="path2">Path 2</label>
+                    </div>
+                </div>
+                <div class='wizard-tab' active="true" stepname='path1'>
+                    <h2>This is the path 1</h2>
+                </div>
+                <div class='wizard-tab' stepname='path2'>
+                    <h2>This is the path 2</h2>
+                </div>
+                <div class='wizard-tab' active="true" stepname='step3'>
+                    <h2>This is the last step</h2>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div>
+                    <button class='btn btn-primary btn-prev'>Prev</button>
+                    <button class='btn btn-primary btn-next'>Next</button>
+                    <button class='btn btn-primary btn-end' data-dismiss="modal">Finalize</button>
+                </div>
+            </div>      
+        </div>
+    </div>
+  </body>
+  <script>
+      $(function() {
+        function show($obj, show = true) {
+            if (show)
+                $obj.show();
+            else
+                $obj.hide();
+        }
+
+        $('input[name="customRadio"]').on('change', function() {
+            let path1 = $('#path1').is(':checked');
+            show($('.step.path1'), path1);
+            show($('.step.path2'), ! path1);
+        }).trigger('change');
+
+        $('#mywizardmodal').wizard({
+            onnext: function(stepname, pos) {
+                let path1 = $('#path1').is(':checked');
+                $('.wizard-tab[stepname="path1"]').attr('active', path1);
+                $('.wizard-tab[stepname="path2"]').attr('active', ! path1);
+                console.log(this);
+                if (path1)
+                    this._stepobject = '.step.path1,.step.main';
+                else
+                    this._stepobject = '.step.path2,.step.main';
+                $('input[name="customRadio"]').trigger('change');
+                return true;
+            },
+            tabselector: 'div.wizard-tab[active="true"]',
+            onbegin: function() {
+                $('.wizard-tab').hide();
+            }
+        }).modal('show');
+                $('input[name="customRadio"]').trigger('change');
+      })
+  </script>
+</html>

@@ -31,6 +31,7 @@ $(function() {
 You have several examples in this folder (some of them use bootstrap):
 - *simple.html* that contains a div-based example ([See it in action at codepen](https://codepen.io/dealfonso/pen/PoNgjKW)).
 - *modal.html* that contains a simple wizard inside a bootstrap modal ([See it in action at codepen](https://codepen.io/dealfonso/pen/XWdQgzO)).
+- *modalconditional.html* contains an example with a multiple workflow for the wizard ([See it in action at codepen](https://codepen.io/dealfonso/pen/VwaOXEY)).
 - *modalform.html* that contains a full wizard example with tab validation and other features, inside a form that can be submitted to your server ([See it in action at codepen](https://codepen.io/dealfonso/pen/eYZoRVQ)).
 
 ## Using
@@ -39,7 +40,7 @@ You need to include `jq-wizard.js` either from your cloned repo, or from a CDN, 
 
 ```html
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/dealfonso/jq-wizard@1.0beta/jq-wizard.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/dealfonso/jq-wizard@1.0/jq-wizard.js"></script>
 ```
 
 ## Customization
